@@ -1,10 +1,15 @@
 Name:    realmd
 Version: 0.17.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Kerberos realm enrollment service
-License: LGPLv2+
+License: LGPL-2.1-or-later
 URL:     https://gitlab.freedesktop.org/realmd/realmd
 Source0: https://gitlab.freedesktop.org/realmd/realmd/uploads/204d05bd487908ece2ce2705a01d2b26/realmd-%{version}.tar.gz
+
+Patch0001: 0001-service-allow-multiple-names-and-_srv_-ad_server-opt.patch
+Patch0002: 0002-service-fix-error-message-when-removing-host-from-AD.patch
+Patch0003: 0003-doc-fix-reference-in-realmd.conf-man-page.patch
+Patch0004: 0001-tools-fix-ccache-handling-for-leave-operation.patch
 
 ### Downstream Patches ###
 # In RHEL the RHEL the FreeIPA packages are call only ipa-* while upstream is
@@ -61,13 +66,13 @@ autoreconf -fi
 %endif
     %{nil}
 
-make %{?_smp_mflags}
+%make_build
 
 %check
 make check
 
 %install
-make install DESTDIR=%{buildroot}
+%make_install
 
 %find_lang realmd
 
@@ -100,6 +105,14 @@ make install DESTDIR=%{buildroot}
 %doc ChangeLog
 
 %changelog
+* Tue Feb 20 2024 Sumit Bose <sbose@redhat.com>
+- Use make macros https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro
+- migrated to SPDX license
+- allow multiple names and _srv_ ad_server option
+  Resolves: jira#RHEL-12112
+- fix ccache handling for leave operation
+  Resolves: jira#RHEL-5104
+
 * Fri Oct 14 2022 Sumit Bose <sbose@redhat.com> - 0.17.1-1
 - Update to upstream release 0.17.1
   Resolves: rhbz#2129050, rhbz#2133839
