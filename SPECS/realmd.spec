@@ -1,6 +1,6 @@
 Name:    realmd
 Version: 0.17.1
-Release: 12%{?dist}
+Release: 13%{?dist}
 Summary: Kerberos realm enrollment service
 License: LGPL-2.1-or-later
 URL:     https://gitlab.freedesktop.org/realmd/realmd
@@ -16,6 +16,12 @@ Patch0005: 0001-tools-fix-ccache-handling-for-leave-operation.patch
 Patch0006: 0001-Various-fixes-for-issues-found-by-static-code-scanne.patch
 Patch0007: 0002-krb5-add-realm_krb5_get_error_message.patch
 
+# add renew command
+Patch0008: 0001-Initial-implementation-of-a-renew-request.patch
+Patch0009: 0002-renew-implement-support-for-adcli.patch
+Patch0010: 0003-renew-add-translatable-strings.patch
+Patch0011: 0004-renew-fix-issues-found-by-Coverity.patch
+Patch0012: 0005-doc-add-renew-option-of-realm-man-page.patch
 
 BuildRequires: make
 BuildRequires: gcc
@@ -102,6 +108,10 @@ make check
 %doc ChangeLog
 
 %changelog
+* Tue Oct 14 2025 Sumit Bose <sbose@redhat.com> - 0.17.1-13
+- add renew command
+  Resolves: RHEL-117645
+
 * Thu Feb 13 2025 Sumit Bose <sbose@redhat.com> - 0.17.1-12
 - Fixes for RHEL SAST Automation
   Resolves: RHEL-44992

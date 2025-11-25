@@ -1,0 +1,21 @@
+From 24d1cb6392a95d2336a66b3538bfe42d4fe73289 Mon Sep 17 00:00:00 2001
+From: Sumit Bose <sbose@redhat.com>
+Date: Tue, 13 May 2025 13:08:10 +0200
+Subject: [PATCH] renew: add translatable strings
+
+---
+ po/POTFILES.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/po/POTFILES.in b/po/POTFILES.in
+index 140ed4c..2d8b266 100644
+--- a/po/POTFILES.in
++++ b/po/POTFILES.in
+@@ -20,3 +20,4 @@ tools/realm-discover.c
+ tools/realm-join.c
+ tools/realm-leave.c
+ tools/realm-logins.c
++tools/realm-renew.c
+-- 
+2.51.0
+
